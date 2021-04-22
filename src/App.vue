@@ -115,7 +115,7 @@ export default {
       return [
         {
           id: 'vrf',
-          title: 'Vrf core',
+          title: 'No adapter',
           image: 'logo.png'
         },
         {
