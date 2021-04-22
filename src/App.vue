@@ -12,10 +12,11 @@
     </rf-form>
 
     <v-app>
-      <rf-form :resource="resource" class="form">
+      <rf-form :resource="resource" class="form" ref="form">
         <rf-select name="mode" :options="engines" />
         <rf-input name="title" />
         <rf-checkbox name="checked" />
+        <rf-switch name="checked" />
         <rf-datepicker name="date" />
         <rf-textarea name="description" />
         <rf-submit />
@@ -58,7 +59,8 @@ export default {
         'checkbox',
         'textarea',
         'submit',
-        'datepicker'
+        'datepicker',
+        'switch'
       ]
     ),
     RfSelectAdapter,
@@ -122,6 +124,11 @@ export default {
           id: 'vuetify',
           title: 'vrf-vuetify',
           image: 'vuetify.svg'
+        },
+        {
+          id: 'bootstrap',
+          title: 'vrf-bootstrap(PoC)',
+          image: 'bootstrap-vue.png'
         }
       ]
     }

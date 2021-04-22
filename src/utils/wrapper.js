@@ -1,21 +1,25 @@
 import {descriptors, Resource, components as vrfComponents} from 'vrf'
 import VrfVuetify from 'vrf-vuetify'
+import VrfBootstrap from 'vrf-bootstrap'
 import {camelCase, capitalize} from 'lodash'
 
 const engines = {
-  vuetify: VrfVuetify
+  vuetify: VrfVuetify,
+  bootstrap: VrfBootstrap
 }
 
 const cache = {}
 
+
 export default (name) => {
+  const descriptor = name === 'switch' ? descriptors.checkbox : descriptors[name]
   return {
     mixins: [
       Resource
     ],
-    props: descriptors[name].props,
+    props: descriptor.props,
     render(h) {
-      return h(this.component, {props: this.$props})
+      return h(this.component, {props: this.$props, key: name + this.$resource.mode})
     },
     computed: {
       component() {
@@ -26,15 +30,17 @@ export default (name) => {
           return  vrfComponents[componentName]
         }
 
-        if(cache[componentName])
-          return cache[componentName]
+        if(cache[mode] && cache[mode][componentName])
+          return cache[mode][componentName]
 
-        cache[componentName] = {
-          extends: descriptors[name],
+        cache[mode] ||= {}
+
+        cache[mode][componentName] = {
+          extends: descriptor,
           ...engines[mode].components[componentName]
         }
 
-        return cache[componentName]
+        return cache[mode][componentName]
       }
     }
   }

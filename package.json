@@ -8,10 +8,13 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "bootstrap": "^4.6.0",
+    "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
     "lodash": "^4.17.21",
     "raw-loader": "^4.0.2",
     "vrf": "^0.38.4",
+    "vrf-bootstrap": "0.0.2",
     "vrf-vuetify": "^0.31.0",
     "vue": "^2.6.11",
     "vue-code-highlight": "^0.7.6",
