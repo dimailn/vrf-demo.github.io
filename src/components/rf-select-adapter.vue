@@ -10,7 +10,7 @@
     style="width: 200px"
   >
     <img
-      :src="'/' + option.image"
+      :src="option.image"
       height="100"
 
     />
