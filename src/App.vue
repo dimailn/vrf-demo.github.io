@@ -91,7 +91,7 @@ export default {
   },
   computed: {
     code() {
-      return "    " + this.formCodes[1]
+      return this.formCodes[1].split("\n").map((str, i) => i === 0 ? str : str.substr(4)).join("\n")
     },
     formCodes() {
       const codes = []
