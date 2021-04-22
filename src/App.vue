@@ -1,6 +1,12 @@
 <template>
   <div id="app">
+    <p class="header">Vrf demo of UI-agnostic concept</p>
+
+    <vue-code-highlight language="html">
+      {{code}}
+    </vue-code-highlight>
     <p class="header">Select an adapter</p>
+
     <rf-form :resource="resource" class="form">
       <rf-select-adapter name="mode" :options="engines" />
     </rf-form>
@@ -15,6 +21,8 @@
         <rf-submit />
       </rf-form>
     </v-app>
+
+
   </div>
 </template>
 
@@ -25,6 +33,15 @@ import '@mdi/font/css/materialdesignicons.css'
 
 import wrapComponents from './utils/wrap-components'
 import RfSelectAdapter from './components/rf-select-adapter'
+import { component as VueCodeHighlight } from 'vue-code-highlight';
+
+import "vue-code-highlight/themes/duotone-sea.css";
+import "vue-code-highlight/themes/window.css";
+
+import thisFile from '!raw-loader!./App.vue'
+
+
+
 
 
 const styles = {
@@ -44,7 +61,8 @@ export default {
         'datepicker'
       ]
     ),
-    RfSelectAdapter
+    RfSelectAdapter,
+    VueCodeHighlight
   },
   data(){
     return {
@@ -72,6 +90,27 @@ export default {
     }
   },
   computed: {
+    code() {
+      return "    " + this.formCodes[1]
+    },
+    formCodes() {
+      const codes = []
+
+      let thisFileCopy = thisFile
+
+      while (thisFileCopy.indexOf('<rf-form') != -1) {
+        const startPosition = thisFileCopy.indexOf('<rf-form')
+        const length = thisFileCopy.indexOf('</rf-form>') - startPosition + 10
+
+        const code = thisFileCopy.substr(startPosition, length)
+
+        thisFileCopy = thisFileCopy.substr(startPosition + length)
+
+        codes.push(code)
+      }
+
+      return codes
+    },
     engines() {
       return [
         {

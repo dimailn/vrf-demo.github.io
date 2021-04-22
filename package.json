@@ -14,6 +14,7 @@
     "vrf": "^0.38.4",
     "vrf-vuetify": "^0.31.0",
     "vue": "^2.6.11",
+    "vue-code-highlight": "^0.7.6",
     "vuetify": "^2.4.9"
   },
   "devDependencies": {
