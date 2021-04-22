@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <p class="header">Vrf demo of UI-agnostic concept</p>
+    <p class="header"><a class="link" href="https://github.com/dimailn/vrf">Vrf</a> demo of UI-agnostic concept</p>
 
     <vue-code-highlight language="html">
       {{code}}
@@ -161,4 +161,11 @@ export default {
   }
 }
 
+.link {
+  text-decoration: none;
+}
+
+.link:visited {
+  color: #0000EE;
+}
 </style>
